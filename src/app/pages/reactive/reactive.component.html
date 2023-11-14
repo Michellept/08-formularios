@@ -1,0 +1,124 @@
+<h4>Formularios <small> Formularios Reactivos </small></h4>
+<hr />
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+  <div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Nombre</label>
+      <div class="col">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Nombre"
+          formControlName="name"
+          [class.is-invalid]="nameNoValido"
+        />
+        <small *ngIf="nameNoValido" class="text-danger"
+          >Ingrese al menos 5 caracteres</small
+        >
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Apellido</label>
+      <div class="col">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Apellido"
+          formControlName="lastname"
+          [class.is-invalid]="lastnameNoValido"
+        />
+        <small *ngIf="lastnameNoValido" class="text-danger"
+          >Ingrese al menos 5 caracteres</small
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col">
+      <input
+        class="form-control"
+        type="email"
+        placeholder="Correo electrónico"
+        formControlName="email"
+        [class.is-invalid]="emailNoValido"
+      />
+      <small *ngIf="emailNoValido" class="text-danger"
+        >El correo no es valido</small
+      >
+    </div>
+  </div>
+  <div class="form-group row" formGroupName="direccion">
+    <label class="col-2 col-form-label">Dirección</label>
+    <div class="col">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Calle"
+        formControlName="distrito"
+        [class.is-invalid]="distritoNoValido"
+        />
+        <small *ngIf="distritoNoValido" class="text-danger">El ciudad no es valido</small>
+    </div>
+ 
+    <div class="col">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Ciudad"
+        formControlName="ciudad"
+        [class.is-invalid]="ciudadNoValido"
+      />
+      <small *ngIf="ciudadNoValido" class="text-danger">El ciudad no es valido</small>
+
+    </div>
+
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary btn-block">
+        Guardar
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <table class="table table-dark">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>Pasatiempos</th>
+            <th>Borrar</th>
+          </tr>
+        </thead>
+        <tbody formArrayName="pasatiempos">
+          <tr *ngFor="let data of pasatiempos.controls; let i = index">
+            <td>
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+
+</form>
+
+<hr />
+<pre>
+  Estado del formulario_{{forma.valid}}
+  <br>
+  Status:{{forma.status}}
+</pre>
+
+<pre>
+  {{ forma.value | json }}
+
+</pre>
